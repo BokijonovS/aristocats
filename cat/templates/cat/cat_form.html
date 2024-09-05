@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    {{ block.super }}: {{ title }}
+{% endblock title %}
+
+
+{% block main %}
+    <form method="post" class="container" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.name }}
+        {{ form.category }}
+        {{ form.description }}
+        {{ form.photo }}
+        {{ form.age }}
+        {{ form.color }}
+        {{ form.gender }}
+        <div class="d-flex justify-content-start" style="margin-bottom: 30px">
+            <div>
+                <a href="{% url 'index' %}" class="btn btn-warning my-5 mx-2">Get back</a>
+            </div>
+            <div>
+                <button type="submit" class="btn btn-success my-5">Save</button>
+            </div>
+        </div>
+
+    </form>
+{% endblock main %}

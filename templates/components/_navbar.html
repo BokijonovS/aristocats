@@ -1,0 +1,129 @@
+<!-- Navbar-->
+{% load static %}
+<nav class="navbar navbar-expand-lg navbar-light bg-body-tertiary">
+    <div class="container-fluid justify-content-between">
+        <!-- Left elements -->
+        <div class="d-flex">
+            <!-- Brand -->
+            <a class="navbar-brand me-2 mb-1 d-flex align-items-center py-n3" href="{% url 'index' %}">
+                <img
+                        src="{% static 'cat/img/logo.png' %}"
+                        width="120"
+                        alt="MDB Logo"
+                        loading="lazy"
+                        style="margin-top: -30px; margin-bottom: -30px"
+                />
+            </a>
+
+            <!-- Search form -->
+            <form class="input-group w-auto my-auto d-none d-sm-flex">
+                <input
+                        autocomplete="off"
+                        type="search"
+                        class="form-control rounded"
+                        placeholder="Search"
+                        style="min-width: 125px;"
+                />
+                <span class="input-group-text border-0 d-none d-lg-flex"
+                ><i class="fas fa-search"></i
+                ></span>
+            </form>
+        </div>
+        <!-- Left elements -->
+
+        <!-- Center elements -->
+        <!-- Center elements -->
+
+        <!-- Right elements -->
+        {% if request.user.is_authenticated %}
+            <ul class="navbar-nav flex-row">
+                <li class="nav-item me-3 me-lg-1">
+                    <a class="nav-link d-sm-flex align-items-sm-center"
+                       href="{% url 'profile' request.user.username %}">
+                        {% if request.user.photo %}
+                            <img
+                                    src="{{ request.user.photo.url }}"
+                                    class="rounded-circle"
+                                    height="22"
+                                    alt="Black and White Portrait of a Man"
+                                    loading="lazy"
+                            />
+                        {% else %}
+                            <img
+                                    src="https://mdbcdn.b-cdn.net/img/new/avatars/1.webp"
+                                    class="rounded-circle"
+                                    height="22"
+                                    alt="Black and White Portrait of a Man"
+                                    loading="lazy"
+                            />
+                        {% endif %}
+                        <strong class="d-none d-sm-block ms-1">{{ request.user.username }}</strong>
+                    </a>
+                </li>
+
+                <li class="nav-item dropdown me-3 me-lg-1">
+                    <a
+                            data-mdb-dropdown-init
+                            class="nav-link dropdown-toggle hidden-arrow"
+                            href="#"
+                            id="navbarDropdownMenuLink"
+                            role="button"
+                            aria-expanded="false"
+                    >
+                        <i class="fas fa-chevron-circle-down fa-lg"></i>
+                    </a>
+                    <ul
+                            class="dropdown-menu dropdown-menu-end"
+                            aria-labelledby="navbarDropdownMenuLink"
+                    >
+                        <li>
+                            <a class="dropdown-item" href="{% url 'profile' request.user.username %}">My profile</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown me-3 me-lg-1">
+                    <a
+                            data-mdb-dropdown-init
+                            class="nav-link dropdown-toggle hidden-arrow"
+                            href="#"
+                            id="navbarDropdownMenuLink"
+                            role="button"
+                            aria-expanded="false"
+                    >
+                        <i class="fas fa-plus-circle fa-lg"></i>
+                    </a>
+                    <ul
+                            class="dropdown-menu dropdown-menu-end"
+                            aria-labelledby="navbarDropdownMenuLink"
+                    >
+                        <li>
+                            <a class="dropdown-item" href="{% url 'cat_create' %}">Add cats</a>
+                        </li>
+
+                    </ul>
+                </li>
+            </ul>
+        {% else %}
+            <ul class="nav nav-pills nav-justified my-3" id="ex1" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link active" id="tab-login" href="{% url 'login' %}" role="tab"
+                       aria-controls="pills-login" aria-selected="true">Login</a>
+                </li>
+                {% if request.path != '/register/' %}
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link" id="tab-register" href="{% url 'register' %}" role="tab"
+                           aria-controls="pills-register" aria-selected="false">Register</a>
+                    </li>
+                {% endif %}
+            </ul>
+        {% endif %}
+
+        <!-- Right elements -->
+    </div>
+</nav>
+
+
+<!-- Navbar -->

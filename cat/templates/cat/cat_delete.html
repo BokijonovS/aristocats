@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block title %}
+    {{ block.suer }}: {{ title }}
+{% endblock title %}
+
+{% block main %}
+    <form method="post">
+    {% csrf_token %}
+    <div class="mx-5 my-5 d-flex justidy-content-between">
+        <img src="{% static 'cat/img/delete.png' %}" alt="" width="500px">
+        <div style="margin-top: 70px; margin-left: 30px">
+            <p class="deletion_text my-5">Are you sure that you wanna <br><span class="bold-text">get rid of me?</span></p>
+            <a class="button_no" href="{% url 'index' %}">Of course not!</a>
+            <button type="submit" class="button_yes" >Yes, im sorry!</button>
+        </div>
+    </div>
+    </form>
+
+
+{% endblock main %}

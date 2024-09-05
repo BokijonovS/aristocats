@@ -1,0 +1,104 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    {{ block.super }}: {{ title }}
+{% endblock title %}
+
+
+{% block main %}
+    <div class="card text-center container w-50 my-5" style="background-color: azure">
+        <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
+            {% if cat.photo %}
+                <img src="{{ cat.photo.url }}" class="img-fluid py-3 w-50" style="border-radius: 10px"/>
+            {% else %}
+                <img src="https://ih1.redbubble.net/image.2224109526.1398/bg,f8f8f8-flat,750x,075,f-pad,750x1000,f8f8f8.jpg"
+                     class="img-fluid py-3 w-50" style="border-radius: 10px"/>
+            {% endif %}
+        </div>
+        <div class="card-header">{{ cat.category }}</div>
+        <div class="card-body">
+            <div class="d-flex justify-content-end" style="margin-left: auto;margin-right: 5px">
+                {% if request.user == cat.author %}
+                    <div style="margin-right: 5px">
+                        Muallif: <a href="{% url 'profile' user.username %}">{{ user.username }}</a>
+                    </div>
+                {% else %}
+                    <div style="margin-right: 5px">
+                        Muallif: {{ cat.author }}
+                    </div>
+                {% endif %}
+
+
+                <div>
+                    {{ cat.views }}<i class="far fa-eye mt-1 mx-2"></i>
+                </div>
+                {% if request.user == cat.author %}
+                    <div>
+                        <a href="{% url 'cat_update' cat.id %}"><i class="far fa-pen-to-square mt-1 mx-2"></i></a>
+                    </div>
+                    <div>
+                        <a href="{% url 'cat_delete' cat.id %}"><i class="far fa-trash-can mt-1 mx-2"></i></a>
+                    </div>
+                {% endif %}
+
+            </div>
+            <h5 class="card-title">{{ cat.name }}</h5>
+
+            <p class="card-text">
+                Description: <br>{{ cat.description }}
+            </p>
+            <p>Age: {{ cat.age }}</p>
+            <p>Color: {{ cat.color }}</p>
+            <p>Gender: {{ cat.gender }}</p>
+
+            <a type="button" class="btn btn-primary" href="{% url 'index' %}">Home</a>
+        </div>
+        <div class="card-footer">{{ cat.created }}</div>
+
+        {#    comments#}
+
+        <div class="card-footer py-3 border-0 my-5">
+            <form method="post" action="{% url 'save_comment' cat.pk %}">
+                {% csrf_token %}
+                <div class="d-flex flex-start">
+                    <div class="form-outline w-100">
+                        <p>Kommentariya qoldiring</p>
+                        {{ form.text }}
+                    </div>
+                </div>
+                <div class="d-flex justify-content-end align-items-center mt-2">
+                    <button type="submit"  class="btn btn-primary btn-sm mx-3">Post comment</button>
+                    <a href="{% url 'cat_detail' cat.id %}" type="button"
+                       class="btn btn-outline-primary btn-sm">Cancel</a>
+                </div>
+            </form>
+        </div>
+
+
+        {#    kommentariyalar #}
+    </div>
+
+    <div>
+        <h5 class="mx-4 mt-5">Kommentariyalar:</h5>
+        {% for comment in comments %}
+            <div class="card mb-3 d-flex justify-content-between my-3 p-3 mx-4">
+                <div>
+                    Kommentariya: {{ comment.text }}
+                </div>
+                <div>
+                    Muallifi: {{ comment.commentator }}
+                </div>
+                <div>
+                    Sanasi: {{ comment.created }}
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+
+
+
+
+{% endblock main %}
+
+

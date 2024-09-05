@@ -1,0 +1,43 @@
+.deletion_text {
+    font-size: 1cm; /* Adjust the font size */
+    font-family: cursive;
+
+}
+.bold-text{
+    font-size: 2cm;
+    font-weight: bold;
+    color: red;
+}
+.button_no{
+    background-color: green;
+    padding: 10px;
+    border-radius: 10px;
+    border: 0px;
+    color: white;
+}
+.button_no:hover {
+    background-color: #88ff00;
+}
+.button_yes{
+    background-color: red;
+    padding: 10px;
+    border-radius: 10px;
+    border: 0px;
+    color: white;
+}
+.button_yes:hover {
+    background-color: black;
+}
+.animals_1{
+    font-family: Serif;
+    font-size: 35px;
+}
+
+.animals_2{
+    font-family: cursive;
+    font-size: 35px;
+}
+.login_text{
+    padding-bottom: 40px;
+    font-size: 20px;
+}

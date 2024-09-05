@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% include 'components/_styles.html' %}
+    <title>
+        {% block title %}
+            AristoCats
+        {% endblock title %}
+    </title>
+</head>
+<body class="vh-100">
+{% block header %}
+{% include 'components/_navbar.html' %}
+{% endblock header %}
+{% include 'components/_messages.html' %}
+
+
+{% block main %}
+{% endblock main %}
+
+{% block footer %}
+{% include 'layouts/footer.html' %}
+{% endblock footer %}
+
+{% include 'components/_scripts.html' %}
+</body>
+</html>

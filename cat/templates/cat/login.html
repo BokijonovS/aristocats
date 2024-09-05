@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+    {{ block.super }}: Login
+{% endblock title %}
+
+{% block header %}
+{% endblock header %}
+{% block footer %}
+{% endblock footer %}
+
+{% block main %}
+<section style="margin-top: 100px; margin-bottom: 100px">
+    <div class="container-fluid h-custom">
+        <div class="row d-flex justify-content-center align-items-center">
+            <div class="col-md-9 col-lg-6 col-xl-5">
+                <img src="{% static 'cat/img/login.png' %}"
+                     class="img-fluid" alt="Sample image">
+            </div>
+            <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="divider d-flex align-items-center my-4 login_text">
+                        <p class="text-center fw-bold mx-3 mb-0">We are not <span class="animals_1">animals</span>, we are <span class="animals_2">animals</span></p>
+                    </div>
+                    <!-- Email input -->
+                    <div data-mdb-input-init class="form-outline mb-4">
+                        {{ form.username }}
+                        <label class="form-label" for="form3Example3">Username</label>
+                    </div>
+                    <!-- Password input -->
+                    <div data-mdb-input-init class="form-outline mb-3">
+                        {{ form.password }}
+                        <label class="form-label" for="form3Example4">Password</label>
+                    </div>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <!-- Checkbox -->
+                        <div class="text-center text-lg-start mt-4 pt-2">
+                            <a href="{% url 'index' %}" class="btn btn-warning btn-lg button-padding">Get Back</a>
+                            <button type="submit" class="btn btn-primary btn-lg button-padding">Login</button>
+                            <p class="small fw-bold mt-2 pt-1 mb-0">Don't have an account? <a href="{% url 'register' %}" class="link-danger">Register</a></p>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock main %}

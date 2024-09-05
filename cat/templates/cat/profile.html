@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+    {{ block.super }}: {{ title }}
+{% endblock title %}
+
+
+{% block main %}
+    <div class="mb-5">
+        <section class="h-100 gradient-custom-2">
+            <div class="container py-5 h-100">
+                <div class="row d-flex justify-content-center align-items-center h-100">
+                    <div class="col col-lg-9 col-xl-7">
+                        <div class="card">
+                            <div class="rounded-top text-white d-flex flex-row"
+                                 style="background-color: darkorange; height:200px;">
+                                <div class="ms-4 mt-5 d-flex flex-column" style="width: 150px;">
+                                    {% if custom_user.photo %}
+                                        <img src="{{ custom_user.photo.url }}"
+                                             alt="Generic placeholder image" class="img-fluid img-thumbnail mt-4 mb-2"
+                                             style="width: 150px; z-index: 1">
+                                    {% else %}
+                                        <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-profiles/avatar-1.webp"
+                                             alt="Generic placeholder image" class="img-fluid img-thumbnail mt-4 mb-2"
+                                             style="width: 150px; z-index: 1">
+                                    {% endif %}
+                                </div>
+                                <div class="ms-3" style="margin-top: 130px;">
+                                    <h5>{{ user.first_name }}</h5>
+                                    <p>{{ user.email }}</p>
+                                </div>
+                            </div>
+
+                            <div class="card-body p-4 text-black pt-5">
+                                <div class="mb-5">
+                                    {% if custom_user.photo %}
+                                        <p class="lead fw-normal mb-1">About</p>
+                                        <div class="p-4" style="background-color: #f8f9fa;">
+                                            <p class="font-italic mb-1">{{ custom_user.job }}</p>
+                                            <p class="font-italic mb-1">Lives in {{ custom_user.address }}</p>
+                                            <p class="font-italic mb-1">{{ custom_user.job2 }}</p>
+                                            <p class="font-italic mb-0">Phone: {{ custom_user.phone }}</p>
+                                            <p class="font-italic mb-0">Mobile: {{ custom_user.mobile }}</p>
+                                        </div>
+                                    {% endif %}
+                                </div>
+                                <div class="d-flex justify-content-between align-items-center mb-4">
+                                    <p class="lead fw-normal mb-0">User cats</p>
+                                </div>
+
+                                {% for cat in cats %}
+                                    <div class="row justify-content-center"
+                                         style="margin-left: 150px; margin-right:auto;">
+                                        <div class="col mb-5">
+                                            {% if cat.photo %}
+                                                <a href="{% url 'cat_detail' cat.id %}"><img src="{{ cat.photo.url }}"
+                                                                                             alt="image 1"
+                                                                                             class="rounded-3"
+                                                                                             width="70%"></a>
+                                            {% else %}
+                                                <a href="{% url 'cat_detail' cat.id %}">
+                                                    <img src="https://ih1.redbubble.net/image.2224109526.1398/bg,f8f8f8-flat,750x,075,f-pad,750x1000,f8f8f8.jpg"
+                                                         alt="image 1" class="rounded-3" width="70%">
+                                                </a>
+                                            {% endif %}
+                                            <div style="margin-left: 15px; margin-top: -75px; padding:5px;">
+                                                <button class="btn bg-light">
+                                                    {{ cat.category }}<br>
+                                                    {{ cat.name }}
+                                                </button>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                {% endfor %}
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+{% endblock main %}
+
+
+
