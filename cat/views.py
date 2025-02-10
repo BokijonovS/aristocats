@@ -4,8 +4,6 @@ from django.contrib.auth import login, logout
 from django.contrib.auth.models import User
 from .models import Cat, Category, Color, Gender, CustomUser, Comment
 from .forms import CatForm, LoginForm, RegisterForm, CommentForm
-from django.contrib.auth.decorators import permission_required
-
 # Create your views here.
 
 def all_cats(request):
@@ -193,38 +191,6 @@ def comment(request, cat_id):
 
 def test(request):
     print(request, '--------------------------------------------------')
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 def contact(request):

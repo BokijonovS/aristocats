@@ -69,10 +69,13 @@
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                         {% for color in colors %}
-                            <li>
-                                <input value="{{ color.name }}" name="color" type="hidden">
-                                <button type="submit" class="dropdown-item"><a>{{ color.name }}</a></button>
-                            </li>
+                            <form method="post" action="{% url 'cats_by_color' color.name %}">
+                                {% csrf_token %}
+                                <li>
+                                    <input value="{{ color.name }}" name="color" type="hidden">
+                                    <button type="submit" class="dropdown-item"><a>{{ color.name }}</a></button>
+                                </li>
+                            </form>
                         {% endfor %}
                     </ul>
                 </li>
@@ -90,10 +93,13 @@
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                         {% for gender in genders %}
+                            <form method="post" action="{% url 'cats_by_gender' gender.name %}">
+                            {% csrf_token %}
                             <li>
                                 <input value="{{ gender.name }}" name="gender" type="hidden">
                                 <button type="submit" class="dropdown-item"><a>{{ gender.name }}</a></button>
                             </li>
+                            </form>
                         {% endfor %}
                     </ul>
                 </li>
